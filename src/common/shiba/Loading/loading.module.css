@@ -1,0 +1,106 @@
+@keyframes sb-loading {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.loading div {
+    box-sizing: border-box !important;
+}
+.loading > div {
+    position: absolute;
+    width: 81.6px;
+    height: 81.6px;
+    top: 19.2px;
+    left: 19.2px;
+    border-radius: 50%;
+    border: 4.8px solid #000;
+    border-color: var(--primary-color) transparent var(--primary-color) transparent;
+    animation: sb-loading 1.25s linear infinite;
+}
+
+.loading > div:nth-child(2),
+.loading > div:nth-child(4) {
+    width: 69.6px;
+    height: 69.6px;
+    top: 25.2px;
+    left: 25.2px;
+    animation: sb-loading 1.25s linear infinite reverse;
+}
+.loading > div:nth-child(2) {
+    border-color: transparent var(--primary-outline) transparent var(--primary-outline);
+}
+.loading > div:nth-child(3) {
+    border-color: transparent;
+}
+.loading > div:nth-child(3) div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(45deg);
+}
+.loading > div:nth-child(3) div:before,
+.loading > div:nth-child(3) div:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 4.8px;
+    height: 4.8px;
+    top: -4.8px;
+    left: 33.6px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 76.8px 0 0 var(--primary-color);
+}
+.loading > div:nth-child(3) div:after {
+    left: -4.8px;
+    top: 33.6px;
+    box-shadow: 76.8px 0 0 0 var(--primary-color);
+}
+
+.loading > div:nth-child(4) {
+    border-color: transparent;
+}
+.loading > div:nth-child(4) div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(45deg);
+}
+.loading > div:nth-child(4) div:before,
+.loading > div:nth-child(4) div:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 4.8px;
+    height: 4.8px;
+    top: -4.8px;
+    left: 27.599999999999998px;
+    background: var(--primary-outline);
+    border-radius: 50%;
+    box-shadow: 0 64.8px 0 0 var(--primary-outline);
+}
+.loading > div:nth-child(4) div:after {
+    left: -4.8px;
+    top: 27.599999999999998px;
+    box-shadow: 64.8px 0 0 0 var(--primary-outline);
+}
+.container {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    background: transparent;
+}
+.loading {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+}
+.loading div {
+    box-sizing: content-box;
+}
