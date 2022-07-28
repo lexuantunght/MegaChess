@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #0573ff;
-    --primary-hover: #005cd1;
-    --primary-outline: rgb(157 193 251);
+    --primary-color: #7fa650;
+    --primary-hover: #537133;
+    --primary-outline: #cee5d0;
     --secondary-color: #64748b;
     --secondary-hover: #475569;
     --secondary-outline: rgb(176 185 198);
@@ -21,6 +21,7 @@
     --background: #ffffff;
     --black-text: #000000;
     --line-color: #ced4da;
+    --window-background: #eeeeee;
     --transition-time: 0.2s;
     --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }

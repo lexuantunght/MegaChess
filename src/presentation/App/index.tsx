@@ -1,31 +1,64 @@
 import React from 'react';
-import Button from '@shiba/Button';
-import Loading from '@shiba/Loading';
-import Header from '../../common/components/Header';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import Sidebar from '@common/components/Sidebar';
+import Titlebar from '@common/components/Titlebar';
+import {
+    IoExtensionPuzzleOutline,
+    IoExtensionPuzzle,
+    IoGameControllerOutline,
+    IoGameController,
+    IoTrophyOutline,
+    IoTrophy,
+    IoSchoolOutline,
+    IoSchool,
+} from 'react-icons/io5';
+import Home from '../Home';
+import Puzzle from '../Puzzle';
 
 const menuItems = [
     {
-        label: 'Home',
+        name: 'home',
         path: '/',
+        title: 'Home',
+        icon: <IoGameController size={30} />,
+        outlineIcon: <IoGameControllerOutline size={30} />,
     },
     {
-        label: 'Post',
-        path: '/post',
+        name: 'puzzle',
+        path: '/puzzle',
+        title: 'Puzzle',
+        icon: <IoExtensionPuzzle size={30} />,
+        outlineIcon: <IoExtensionPuzzleOutline size={30} />,
     },
     {
-        label: 'About me',
-        path: 'about-me',
+        name: 'practice',
+        path: '/practice',
+        title: 'Practice',
+        icon: <IoSchool size={30} />,
+        outlineIcon: <IoSchoolOutline size={30} />,
+    },
+    {
+        name: 'rank',
+        path: '/rank',
+        title: 'Rank',
+        icon: <IoTrophy size={30} />,
+        outlineIcon: <IoTrophyOutline size={30} />,
     },
 ];
 
 const App = () => {
     return (
-        <div className="test">
-            <Header menuItems={menuItems} />
-            <Button variant="warning">
-                <span>Hello</span>
-            </Button>
-            <Loading />
+        <div className="app-container">
+            <HashRouter>
+                <Sidebar items={menuItems} />
+                <div className="app-main">
+                    <Titlebar />
+                    <Switch>
+                        <Route path="/puzzle" component={Puzzle} />
+                        <Route path="/" component={Home} />
+                    </Switch>
+                </div>
+            </HashRouter>
         </div>
     );
 };

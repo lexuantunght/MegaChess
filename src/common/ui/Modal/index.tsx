@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import styles from './drawer.module.css';
-import Button from '@shiba/Button';
+import styles from './modal.module.css';
+import Button from '../Button';
 import { GrClose } from 'react-icons/gr';
 
-type DrawerProps = {
+type ModalProps = {
     show?: boolean;
+    title?: string;
     timeout?: number;
-    showClose?: boolean;
     onClose?: () => void;
 };
 
-const DrawerContent = ({ show, showClose = true, onClose }: DrawerProps) => {
+const ModalContent = ({ show, title = 'Modal', onClose }: ModalProps) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
     const contentRef = React.useRef<HTMLDivElement>(null);
 
@@ -34,12 +34,14 @@ const DrawerContent = ({ show, showClose = true, onClose }: DrawerProps) => {
     const content = (
         <div ref={containerRef} className={styles.container}>
             <div ref={contentRef} className={styles.content}>
-                {showClose && (
-                    <Button mode="text" onClick={onClose} className={styles.close}>
+                <div className={styles.header}>
+                    <span>{title}</span>
+                    <Button mode="text" onClick={onClose}>
                         <GrClose />
                     </Button>
-                )}
+                </div>
                 <div className={styles.body}>hahah</div>
+                <div className={styles.footer}></div>
             </div>
         </div>
     );
@@ -47,12 +49,12 @@ const DrawerContent = ({ show, showClose = true, onClose }: DrawerProps) => {
     return ReactDOM.createPortal(content, document.body);
 };
 
-const Drawer = ({ show, timeout = 300, ...rest }: DrawerProps) => {
+const Modal = ({ show, timeout = 600, ...rest }: ModalProps) => {
     return (
         <CSSTransition in={show} timeout={timeout} unmountOnExit>
-            <DrawerContent {...rest} show={show} />
+            <ModalContent {...rest} show={show} />
         </CSSTransition>
     );
 };
 
-export default Drawer;
+export default Modal;

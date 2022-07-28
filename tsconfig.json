@@ -17,7 +17,7 @@
         "jsx": "react-jsx",
         "baseUrl": "./",
         "paths": {
-            "@shiba/*": ["src/common/shiba/*"]
+            "@common/*": ["src/common/*"]
         }
     },
     "include": ["src"]

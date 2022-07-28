@@ -1,0 +1,15 @@
+.container {
+    height: 2rem;
+    width: 100%;
+    -webkit-app-region: drag;
+    background-color: var(--window-background);
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 1rem;
+    user-select: none;
+}

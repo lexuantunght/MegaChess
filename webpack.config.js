@@ -12,7 +12,7 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
         alias: {
-            '@shiba': path.resolve(__dirname, './src/common/shiba'),
+            '@common': path.resolve(__dirname, './src/common'),
         },
     },
     devServer: {

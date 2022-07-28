@@ -1,0 +1,51 @@
+.container {
+    height: 100vh;
+    width: 4.5rem;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    cursor: pointer;
+}
+
+.tabs {
+    flex: 1;
+}
+.tab {
+    width: 4.5rem;
+    height: 4.5rem;
+    color: var(--white-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.tab.focused {
+    background-color: #00000030;
+}
+
+.setting {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+.setting:focus {
+    background-color: #00000030;
+}
+.setting .settingFocused {
+    display: none;
+}
+.setting:focus .settingUnfocused {
+    display: none;
+}
+.setting:focus .settingFocused {
+    display: block;
+}
