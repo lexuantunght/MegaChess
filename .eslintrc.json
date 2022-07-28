@@ -16,7 +16,7 @@
     "rules": {},
     "settings": {
         "import/resolver": {
-            "alias": ["@shiba", "./src/common/shiba"]
+            "alias": ["@common", "./src/common"]
         },
         "react": {
             "version": "detect"
