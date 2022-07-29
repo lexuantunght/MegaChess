@@ -31,7 +31,9 @@ const Sidebar = ({ items = [] }: SidebarProps) => {
             <div className={styles.tabs}>
                 {items.map((item, index) => (
                     <Link
-                        className={`${styles.tab} ${focusedItem === index ? styles.focused : ''}`}
+                        className={
+                            focusedItem === index ? `${styles.tab} ${styles.focused}` : styles.tab
+                        }
                         key={index}
                         to={item.path}
                         onClick={() => {

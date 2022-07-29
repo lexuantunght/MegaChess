@@ -6,8 +6,8 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
-    entry: './src/index.tsx',
-    output: { path: path.join(__dirname, 'build'), filename: 'index.bundle.js', clean: true },
+    entry: { index: './src/index.tsx' },
+    output: { path: path.join(__dirname, 'build'), filename: '[name].bundle.js', clean: true },
     mode: process.env.NODE_ENV || 'development',
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
@@ -71,6 +71,9 @@ module.exports = {
         mergeDuplicateChunks: true,
         emitOnErrors: false,
         concatenateModules: true,
+        splitChunks: {
+            chunks: 'all',
+        },
     },
     plugins: [
         new HtmlWebpackPlugin({

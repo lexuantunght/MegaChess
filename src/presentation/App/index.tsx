@@ -13,7 +13,7 @@ import {
     IoSchool,
 } from 'react-icons/io5';
 import Home from '../Home';
-import Puzzle from '../Puzzle';
+import Quiz from '../Quiz';
 
 const menuItems = [
     {
@@ -24,9 +24,9 @@ const menuItems = [
         outlineIcon: <IoGameControllerOutline size={30} />,
     },
     {
-        name: 'puzzle',
-        path: '/puzzle',
-        title: 'Puzzle',
+        name: 'quiz',
+        path: '/quiz',
+        title: 'Quiz',
         icon: <IoExtensionPuzzle size={30} />,
         outlineIcon: <IoExtensionPuzzleOutline size={30} />,
     },
@@ -54,7 +54,7 @@ const App = () => {
                 <div className="app-main">
                     {globalThis.IS_DESKTOP && <Titlebar />}
                     <Switch>
-                        <Route path="/puzzle" component={Puzzle} />
+                        <Route path="/quiz" component={Quiz} />
                         <Route path="/" component={Home} />
                     </Switch>
                 </div>
