@@ -1,5 +1,25 @@
 .piece {
     user-select: none;
+    position: absolute;
+    width: 12.5%;
+    height: 12.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pieceIcon {
+    width: 90%;
+    height: 90%;
+}
+.pieceIcon.pieceWhite {
+    color: #ffffff;
+}
+.pieceIcon.pieceBlack {
+    color: #406882;
+}
+.pieceIcon path {
+    stroke-width: 0.75rem;
+    stroke: #2c3333;
 }
 .board {
     display: grid;
@@ -7,16 +27,18 @@
     grid-template-rows: repeat(8, minmax(0, 1fr));
     min-width: 16rem;
     min-height: 16rem;
+    height: calc(100vh - 1.75rem);
     aspect-ratio: 1/1;
     border-radius: var(--border-radius);
     overflow: hidden;
+    position: relative;
 }
 .square {
     aspect-ratio: 1/1;
 }
-.square.white {
+.square.squareWhite {
     background-color: #fafdd6;
 }
-.square.black {
+.square.squareBlack {
     background-color: var(--primary-color);
 }

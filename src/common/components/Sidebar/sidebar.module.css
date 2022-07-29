@@ -10,9 +10,10 @@
 .avatar {
     margin-top: 1.75rem;
     margin-bottom: 1rem;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
     cursor: pointer;
+    border: 2px solid #ffffff;
 }
 
 .tabs {

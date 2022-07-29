@@ -22,6 +22,8 @@ const Sidebar = ({ items = [] }: SidebarProps) => {
         const focused = items.findIndex((item) => item.path === location.pathname);
         if (focused >= 0) {
             setFocusedItem(focused);
+        } else {
+            setFocusedItem(0);
         }
     }, []);
 
