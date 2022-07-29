@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IoSettings, IoSettingsOutline } from 'react-icons/io5';
 import Avatar from '@common/ui/Avatar';
 import styles from './sidebar.module.css';
@@ -15,7 +15,16 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ items = [] }: SidebarProps) => {
-    const [focusedItem, setFocusedItem] = React.useState(0);
+    const [focusedItem, setFocusedItem] = React.useState(-1);
+    const location = useLocation();
+
+    React.useEffect(() => {
+        const focused = items.findIndex((item) => item.path === location.pathname);
+        if (focused >= 0) {
+            setFocusedItem(focused);
+        }
+    }, []);
+
     return (
         <div className={styles.container}>
             <Avatar src="https://picsum.photos/200" className={styles.avatar} />

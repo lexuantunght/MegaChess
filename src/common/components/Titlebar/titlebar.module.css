@@ -1,10 +1,14 @@
 .container {
-    height: 2rem;
+    height: 1.75rem;
     width: 100%;
-    -webkit-app-region: drag;
     background-color: var(--window-background);
     display: flex;
     align-items: center;
+}
+
+.dragable {
+    -webkit-app-region: drag;
+    flex: 1;
 }
 
 .title {

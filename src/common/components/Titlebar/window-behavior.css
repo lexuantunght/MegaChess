@@ -1,0 +1,38 @@
+#window-group-controls {
+    display: none;
+}
+#window-group-controls.window-controls-show {
+    display: grid;
+}
+.window-button-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 46px);
+    height: 100%;
+}
+.window-button-controls > .window-buttons {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+.window-button-controls > .window-buttons:not(.window-button-disabled):hover {
+    background-color: var(--line-color);
+}
+#window-button-close:hover {
+    background-color: var(--error-color);
+    color: var(--white-text);
+}
+#window-button-restore {
+    display: none;
+}
+#window-button-max.window-button-disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+.maximized #window-button-max {
+    display: none;
+}
+.maximized #window-button-restore {
+    display: flex !important;
+}

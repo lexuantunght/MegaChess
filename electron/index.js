@@ -1,6 +1,7 @@
 const { BrowserWindow, app, Tray, Menu } = require('electron');
 const remote = require('@electron/remote/main');
 const path = require('path');
+const url = require('url');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -31,7 +32,7 @@ function createWindow() {
         titleBarStyle: 'hidden',
         webPreferences: {
             nodeIntegration: true,
-            contextIsolation: false,
+            contextIsolation: true,
             devTools: isDev,
             webSecurity: true,
             partition: 'persist:app',

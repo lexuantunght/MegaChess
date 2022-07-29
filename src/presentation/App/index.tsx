@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Sidebar from '@common/components/Sidebar';
 import Titlebar from '@common/components/Titlebar';
 import {
@@ -49,16 +49,16 @@ const menuItems = [
 const App = () => {
     return (
         <div className="app-container">
-            <HashRouter>
+            <BrowserRouter>
                 <Sidebar items={menuItems} />
                 <div className="app-main">
-                    <Titlebar />
+                    {globalThis.IS_DESKTOP && <Titlebar />}
                     <Switch>
                         <Route path="/puzzle" component={Puzzle} />
                         <Route path="/" component={Home} />
                     </Switch>
                 </div>
-            </HashRouter>
+            </BrowserRouter>
         </div>
     );
 };
