@@ -3,7 +3,7 @@ import { ChessColor, ChessName, ChessPosition } from './types';
 
 interface IChessPiece {
     getMovablePositions: () => Array<ChessPosition> | null;
-    getCatchablePositions?: () => Array<ChessPosition> | null;
+    getCatchablePositions: (canMove?: boolean) => Array<ChessPosition> | null;
     getName: () => ChessName;
     getColor: () => ChessColor;
     getPosition: () => ChessPosition;

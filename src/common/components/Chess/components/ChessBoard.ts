@@ -78,6 +78,17 @@ class ChessBoard {
     public getSquare(_position: ChessPosition) {
         return this.chessSquares.find((s) => _isEqual(s.getPosition(), _position));
     }
+
+    public getPieces() {
+        const pieces: Array<IChessPiece> = [];
+        this.chessSquares.forEach((square) => {
+            const piece = square.getPiece();
+            if (piece) {
+                pieces.push(piece);
+            }
+        });
+        return pieces;
+    }
 }
 
 export default ChessBoard;

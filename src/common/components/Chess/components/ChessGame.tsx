@@ -1,6 +1,7 @@
 import React from 'react';
 import _isEqual from 'lodash-es/isEqual';
 import _isEmpty from 'lodash-es/isEmpty';
+import _uniqWith from 'lodash-es/uniqWith';
 import styles from '../chess.module.css';
 import ChessBoard from './ChessBoard';
 import ChessPieceRenderer from './ChessPieceRenderer';
@@ -62,7 +63,7 @@ class ChessGame extends React.Component<ChessGameProps, ChessGameStates> {
         }
         // click piece
         const movablePos = piece.getMovablePositions() || [];
-        const catchablePos = piece.getCatchablePositions?.() || [];
+        const catchablePos = piece.getCatchablePositions(true) || [];
         if (_isEmpty(movablePos) && _isEmpty(catchablePos)) {
             this.setState({
                 focused: pieceId,
@@ -72,7 +73,7 @@ class ChessGame extends React.Component<ChessGameProps, ChessGameStates> {
         }
         this.setState({
             focused: pieceId,
-            movablePositions: [...movablePos, ...catchablePos],
+            movablePositions: _uniqWith([...movablePos, ...catchablePos], _isEqual),
         });
     }
 
@@ -112,14 +113,16 @@ class ChessGame extends React.Component<ChessGameProps, ChessGameStates> {
                 {this.chessBoard.getChessSquares().map((square, index) => {
                     const piece: IChessPiece | undefined = square.getPiece();
                     const isMovableSquare = this.isMovableSquare(square);
+                    let className = `${styles.square} ${
+                        square.getColor() === 'black' ? styles.squareBlack : styles.squareWhite
+                    } ${isMovableSquare ? styles.movable : styles.unmovable}`;
+                    if (piece) {
+                        className += ` ${styles.movableHasPiece}`;
+                    }
                     return (
                         <React.Fragment key={index}>
                             <div
-                                className={`${styles.square} ${
-                                    square.getColor() === 'black'
-                                        ? styles.squareBlack
-                                        : styles.squareWhite
-                                } ${isMovableSquare ? styles.movable : styles.unmovable}`}
+                                className={className}
                                 style={{
                                     gridColumn: square.getPosition().v,
                                     gridRow: 9 - square.getPosition().h,

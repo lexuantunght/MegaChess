@@ -31,6 +31,22 @@ class ChessSquare {
     public hasPiece() {
         return this.piece !== undefined;
     }
+
+    public getTopSquarePosition() {
+        return { h: this.position.h + 1, v: this.position.v } as ChessPosition;
+    }
+
+    public getBottomSquarePosition() {
+        return { h: this.position.h - 1, v: this.position.v } as ChessPosition;
+    }
+
+    public getLeftSquarePosition() {
+        return { h: this.position.h, v: this.position.v - 1 } as ChessPosition;
+    }
+
+    public getRightSquarePosition() {
+        return { h: this.position.h, v: this.position.v + 1 } as ChessPosition;
+    }
 }
 
 export default ChessSquare;

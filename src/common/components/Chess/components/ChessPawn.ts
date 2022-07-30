@@ -18,15 +18,16 @@ class ChessPawn implements IChessPiece {
 
     public getMovablePositions = () => {
         const result: Array<ChessPosition> = [];
-        const h = this.position.h + (this.color === 'white' ? 1 : -1);
+        let h = this.position.h + (this.color === 'white' ? 1 : -1);
         const v = this.position.v;
         if (this.chessBoard?.getSquare({ h, v })?.hasPiece()) {
             return null;
         }
-        if (!this.isMoved) {
-            result.push({ h: h + (this.color === 'white' ? 1 : -1), v });
-        }
         result.push({ h, v });
+        h = h + (this.color === 'white' ? 1 : -1);
+        if (!this.isMoved && !this.chessBoard?.getSquare({ h, v })?.hasPiece()) {
+            result.push({ h, v });
+        }
         return result;
     };
 
@@ -35,15 +36,15 @@ class ChessPawn implements IChessPiece {
         return piece && piece.getColor() !== this.color;
     }
 
-    public getCatchablePositions = () => {
+    public getCatchablePositions = (canMove?: boolean) => {
         const result: Array<ChessPosition> = [];
         const h = this.position.h + (this.color === 'white' ? 1 : -1);
         const v = this.position.v;
 
-        if (this.isCatchablePos({ h, v: v + 1 })) {
+        if (!canMove || this.isCatchablePos({ h, v: v + 1 })) {
             result.push({ h, v: v + 1 });
         }
-        if (this.isCatchablePos({ h, v: v - 1 })) {
+        if (!canMove || this.isCatchablePos({ h, v: v - 1 })) {
             result.push({ h, v: v - 1 });
         }
         return result;

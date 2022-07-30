@@ -42,6 +42,10 @@ class ChessKnight implements IChessPiece {
         return result;
     };
 
+    public getCatchablePositions = () => {
+        return this.getMovablePositions();
+    };
+
     public getName() {
         return this.name;
     }
