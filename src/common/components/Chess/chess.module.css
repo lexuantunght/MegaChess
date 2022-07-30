@@ -6,6 +6,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: bottom 0.3s, left 0.3s;
+}
+.piece.pieceFocused {
+    outline: 4px solid #ecb390;
+    outline-offset: -4px;
 }
 .pieceIcon {
     width: 90%;
@@ -41,4 +47,12 @@
 }
 .square.squareBlack {
     background-color: var(--primary-color);
+}
+.square.movable {
+    outline: 4px solid #ecb390;
+    outline-offset: -4px;
+    cursor: pointer;
+}
+.square.unmovable {
+    cursor: default;
 }

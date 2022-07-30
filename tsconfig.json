@@ -18,7 +18,9 @@
         "baseUrl": "./",
         "paths": {
             "@common/*": ["src/common/*"]
-        }
+        },
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "include": ["src"]
 }

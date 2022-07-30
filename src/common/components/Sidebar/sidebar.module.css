@@ -1,6 +1,6 @@
 .container {
     height: 100vh;
-    width: 4.5rem;
+    width: 4.25rem;
     background-color: var(--primary-color);
     display: flex;
     flex-direction: column;
@@ -10,8 +10,8 @@
 .avatar {
     margin-top: 1.75rem;
     margin-bottom: 1rem;
-    width: 3.25rem;
-    height: 3.25rem;
+    width: 3rem;
+    height: 3rem;
     cursor: pointer;
     border: 2px solid #ffffff;
 }
@@ -20,14 +20,15 @@
     flex: 1;
 }
 .tab {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 4.25rem;
+    height: 4.25rem;
     color: var(--white-text);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s;
+    outline: none;
 }
 .tab.focused {
     background-color: #00000030;

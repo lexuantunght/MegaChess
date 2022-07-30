@@ -8,14 +8,23 @@ import {
     GiChessKnight,
 } from 'react-icons/gi';
 import styles from '../chess.module.css';
+import { ChessColor, ChessName, ChessPosition } from './types';
 
-export type ChessPieceProps = {
-    name: 'queen' | 'king' | 'knight' | 'pawn' | 'rook' | 'bishop';
-    color: 'black' | 'white';
-    position?: { v: number; h: number };
+export type ChessPieceRendererProps = {
+    name: ChessName;
+    color: ChessColor;
+    position: ChessPosition;
+    onClick?: () => void;
+    isFocused?: boolean;
 };
 
-const ChessPiece = ({ name, color, position }: ChessPieceProps) => {
+const ChessPieceRenderer = ({
+    name,
+    color,
+    position,
+    onClick,
+    isFocused,
+}: ChessPieceRendererProps) => {
     const pieceRef = React.useRef<HTMLDivElement>(null);
     const renderChessIcon = (className?: string) => {
         switch (name) {
@@ -34,25 +43,12 @@ const ChessPiece = ({ name, color, position }: ChessPieceProps) => {
         }
     };
 
-    const getMovableSquares = () => {};
-
-    const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
-        if (pieceRef.current) {
-            pieceRef.current.style.top = e.clientY.toString();
-            pieceRef.current.style.left = e.clientX.toString();
-        }
-    };
-
-    if (!position) {
-        return null;
-    }
-
     return (
         <div
             ref={pieceRef}
-            className={styles.piece}
+            className={isFocused ? `${styles.piece} ${styles.pieceFocused}` : styles.piece}
             style={{ bottom: `${(position.h - 1) * 12.5}%`, left: `${(position.v - 1) * 12.5}%` }}
-            onDrag={handleDrag}
+            onClick={onClick}
         >
             {renderChessIcon(
                 `${styles.pieceIcon} ${color === 'white' ? styles.pieceWhite : styles.pieceBlack}`
@@ -61,4 +57,4 @@ const ChessPiece = ({ name, color, position }: ChessPieceProps) => {
     );
 };
 
-export default ChessPiece;
+export default ChessPieceRenderer;

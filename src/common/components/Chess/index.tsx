@@ -1,10 +1,10 @@
 import React from 'react';
-import ChessBoard from './components/ChessBoard';
+import ChessGame from './components/ChessGame';
 
 const Chess = () => {
     return (
         <div style={{ margin: '0 1rem' }}>
-            <ChessBoard />
+            <ChessGame />
         </div>
     );
 };
