@@ -13,7 +13,6 @@ class ChessPawn implements IChessPiece {
         this.name = 'pawn';
         this.color = _color;
         this.position = _position;
-        this.isMoved = false;
     }
 
     public getMovablePositions = () => {
@@ -70,6 +69,10 @@ class ChessPawn implements IChessPiece {
     public setChessBoard(_chessBoard: ChessBoard) {
         this.chessBoard = _chessBoard;
     }
+
+    public getIsMoved = () => {
+        return this.isMoved;
+    };
 }
 
 export default ChessPawn;

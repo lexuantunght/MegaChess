@@ -91,11 +91,43 @@ class ChessGame extends React.Component<ChessGameProps, ChessGameStates> {
             .find((square) => this.generatePieceId(square.getPiece()) === this.state.focused);
         if (currentSquare) {
             const piece = currentSquare.getPiece();
+            const castling = this.handleCastling(square, piece);
             piece?.setPosition(square.getPosition());
             this.setState({ focused: undefined, movablePositions: null }, () => {
                 square.setPiece(piece);
                 currentSquare.setPiece();
+                if (castling) {
+                    const { newRookSquare, rook, oldRookSquare } = castling;
+                    newRookSquare?.setPiece(rook);
+                    oldRookSquare?.setPiece();
+                }
             });
+        }
+    }
+
+    handleCastling(square: ChessSquare, picece?: IChessPiece) {
+        if (!picece || picece.getName() !== 'king' || picece.getIsMoved()) {
+            return;
+        }
+        if (square.getPosition().v === 7) {
+            const rookSquare = this.chessBoard.getSquare({ h: picece.getPosition().h, v: 8 });
+            const rook = rookSquare?.getPiece();
+            rook?.setPosition({ h: picece.getPosition().h, v: 6 });
+            return {
+                newRookSquare: this.chessBoard.getSquare({ h: picece.getPosition().h, v: 6 }),
+                rook,
+                oldRookSquare: rookSquare,
+            };
+        }
+        if (square.getPosition().v === 3) {
+            const rookSquare = this.chessBoard.getSquare({ h: picece.getPosition().h, v: 1 });
+            const rook = rookSquare?.getPiece();
+            rook?.setPosition({ h: picece.getPosition().h, v: 4 });
+            return {
+                newRookSquare: this.chessBoard.getSquare({ h: picece.getPosition().h, v: 4 }),
+                rook,
+                oldRookSquare: rookSquare,
+            };
         }
     }
 

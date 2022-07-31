@@ -9,6 +9,7 @@ interface IChessPiece {
     getPosition: () => ChessPosition;
     setPosition: (_position: ChessPosition) => void;
     setChessBoard: (_chessBoard: ChessBoard) => void;
+    getIsMoved: () => boolean | undefined;
 }
 
 export default IChessPiece;

@@ -7,6 +7,7 @@ class ChessRook implements IChessPiece {
     private color: ChessColor;
     private position: ChessPosition;
     private chessBoard?: ChessBoard;
+    private isMoved?: boolean;
 
     constructor(_color: ChessColor, _position: ChessPosition) {
         this.name = 'rook';
@@ -79,11 +80,16 @@ class ChessRook implements IChessPiece {
 
     public setPosition = (_position: ChessPosition) => {
         this.position = _position;
+        this.isMoved = true;
     };
 
     public setChessBoard(_chessBoard: ChessBoard) {
         this.chessBoard = _chessBoard;
     }
+
+    public getIsMoved = () => {
+        return this.isMoved;
+    };
 }
 
 export default ChessRook;

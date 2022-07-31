@@ -8,6 +8,7 @@ class ChessKing implements IChessPiece {
     private color: ChessColor;
     private position: ChessPosition;
     private chessBoard?: ChessBoard;
+    private isMoved?: boolean;
 
     constructor(_color: ChessColor, _position: ChessPosition) {
         this.name = 'king';
@@ -59,7 +60,7 @@ class ChessKing implements IChessPiece {
         return isSafe;
     }
 
-    public getMovablePositions = () => {
+    private getOnlyMovablePositions = () => {
         const result: Array<ChessPosition> = [];
         const h = this.position.h;
         const v = this.position.v;
@@ -90,8 +91,72 @@ class ChessKing implements IChessPiece {
         return result;
     };
 
+    public getMovablePositions = () => {
+        const result = this.getOnlyMovablePositions();
+        const castlingPos = this.getCastlingPositions();
+        if (castlingPos) {
+            result.push(...castlingPos);
+        }
+        return result;
+    };
+
     public getCatchablePositions = () => {
-        return this.getMovablePositions();
+        return this.getOnlyMovablePositions();
+    };
+
+    private getCastlingPositions = () => {
+        if (this.isMoved || !this.chessBoard || !this.isSafeSquare(this.position)) {
+            return null;
+        }
+        const result: Array<ChessPosition> = [];
+        const h = this.color === 'white' ? 1 : 8;
+        const nearRook = this.chessBoard.getSquare({ v: 8, h })?.getPiece();
+        const farRook = this.chessBoard.getSquare({ v: 1, h })?.getPiece();
+        const nearCondition =
+            nearRook &&
+            nearRook.getName() === 'rook' &&
+            nearRook.getColor() === this.color &&
+            !nearRook.getIsMoved();
+        const farCondition =
+            farRook &&
+            farRook.getName() === 'rook' &&
+            farRook.getColor() === this.color &&
+            !farRook.getIsMoved();
+        if (nearCondition) {
+            let condition = true;
+            for (let i = 6; i <= 7; i++) {
+                const square = this.chessBoard.getSquare({ v: i, h });
+                if (!square) {
+                    condition = false;
+                    break;
+                }
+                if (square.hasPiece() || !this.isSafeSquare(square.getPosition())) {
+                    condition = false;
+                    break;
+                }
+            }
+            if (condition) {
+                result.push({ v: 7, h });
+            }
+        }
+        if (farCondition) {
+            let condition = true;
+            for (let i = 4; i >= 2; i--) {
+                const square = this.chessBoard.getSquare({ v: i, h });
+                if (!square) {
+                    condition = false;
+                    break;
+                }
+                if (square.hasPiece() || !this.isSafeSquare(square.getPosition())) {
+                    condition = false;
+                    break;
+                }
+            }
+            if (condition) {
+                result.push({ v: 3, h });
+            }
+        }
+        return result;
     };
 
     public getName() {
@@ -108,11 +173,16 @@ class ChessKing implements IChessPiece {
 
     public setPosition = (_position: ChessPosition) => {
         this.position = _position;
+        this.isMoved = true;
     };
 
     public setChessBoard(_chessBoard: ChessBoard) {
         this.chessBoard = _chessBoard;
     }
+
+    public getIsMoved = () => {
+        return this.isMoved;
+    };
 }
 
 export default ChessKing;
