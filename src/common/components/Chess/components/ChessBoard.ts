@@ -20,7 +20,7 @@ class ChessBoard {
     private initSquares() {
         for (let i = 1; i <= 8; i++) {
             for (let j = 1; j <= 8; j++) {
-                const square = new ChessSquare({ v: j, h: i }, (i + j) % 2 ? 'black' : 'white');
+                const square = new ChessSquare({ v: j, h: i }, (i + j) % 2 ? 'white' : 'black');
                 let piece: IChessPiece | undefined;
                 switch (i) {
                     case 1:
